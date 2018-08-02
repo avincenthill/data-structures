@@ -3,6 +3,10 @@ describe('graph', function() {
 
   beforeEach(function() {
     graph = new Graph();
+    //invisible two lines in Graph function
+    //this = Object.create(Graph.prototype)
+    //...
+    //return this
   });
 
   it('should have methods named "addNode", "contains", "removeNode", "addEdge", "hasEdge", "removeEdge" and "forEachNode"', function() {

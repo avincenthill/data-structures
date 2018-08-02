@@ -10,13 +10,24 @@ Graph.prototype.addNode = function(node) {
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
-Graph.prototype.contains = function(node) {};
+Graph.prototype.contains = function(node) {
+  return this.node === node ? true : false;
+};
 
 // Removes a node from the graph.
-Graph.prototype.removeNode = function(node) {};
+Graph.prototype.removeNode = function(node) {
+  this.node = null;
+  this.edges = null;
+};
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
-Graph.prototype.hasEdge = function(fromNode, toNode) {};
+Graph.prototype.hasEdge = function(fromNode, toNode) {
+  let areConnected = false;
+  if (fromNode && toNode) {
+    areConnected = this.fromNode.edges.contains(toNode);
+  }
+  return areConnected;
+};
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {};

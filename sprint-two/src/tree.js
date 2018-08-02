@@ -4,7 +4,7 @@ var Tree = function(value) {
     value = null;
   }
   newTree.value = value;
-  //newTree.parent = null;
+  newTree.isFound = false;
 
   //share methods
   newTree.addChild = treeMethods.addChild;
@@ -24,15 +24,14 @@ var treeMethods = {
 
   contains: function(target) {
     //O(n) time complexity
-    let isFound = false;
     if (this.value === target) {
-      isFound = isFound || true;
+      this.isFound = this.isFound || true;
     } else {
       this.children.forEach(element => {
-        element.contains(target);
+        this.isFound = this.isFound || element.contains(target);
       });
     }
-    return isFound;
+    return this.isFound;
   }
 };
 
