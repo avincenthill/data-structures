@@ -4,33 +4,35 @@ var Tree = function(value) {
     value = null;
   }
   newTree.value = value;
+  //newTree.parent = null;
 
   //share methods
   newTree.addChild = treeMethods.addChild;
   newTree.contains = treeMethods.contains;
 
-  newTree.children = {};
+  newTree.children = [];
   return newTree;
 };
 
 var treeMethods = {
+  //O(1) time complexity
   addChild: function(value) {
-    this.children[Object.keys(this.children).length] = Tree(value);
+    newTree = Tree(value);
+    this.children.push(newTree);
+    //newTree.parent = this;
   },
 
   contains: function(target) {
-    //O(TBD) time complexity
-    //TBD: fix this
-    if (!this) {
-      return false;
-    } else if (this.value === target) {
-      return true;
-    } else if (this.children === {}) {
-      return false;
+    //O(n) time complexity
+    let isFound = false;
+    if (this.value === target) {
+      isFound = isFound || true;
     } else {
-      console.log(this.children[0]);
-      return this.children[0].contains(target);
+      this.children.forEach(element => {
+        element.contains(target);
+      });
     }
+    return isFound;
   }
 };
 
