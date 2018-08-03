@@ -1,37 +1,77 @@
 var BinarySearchTree = function(value) {
-  var newTree = {};
-  if (!value) {
-    value = null;
-  }
-  newTree.value = value;
-  newTree.isFound = false;
-
-  //share methods
-  newTree.addChild = treeMethods.addChild;
-  newTree.contains = treeMethods.contains;
-
-  newTree.children = [];
-  return newTree;
+  this.value = value;
+  this.left = null;
+  this.right = null;
 };
 
-var treeMethods = {
+BinarySearchTree.prototype.left = function() {
   //O(1) time complexity
-  insert: function(value) {
-    newTree = Tree(value);
-    this.children.push(newTree);
-  },
-
-  contains: function(target) {
-    //O(n) time complexity
-    if (this.value === target) {
-      this.isFound = this.isFound || true;
-    } else {
-      this.children.forEach(element => {
-        this.isFound = this.isFound || element.contains(target);
-      });
-    }
-    return this.isFound;
+  if (this && this.left) {
+    return this.left;
   }
+};
+
+BinarySearchTree.prototype.right = function() {
+  //O(1) time complexity
+  if (this && this.right) {
+    return this.right;
+  }
+};
+
+BinarySearchTree.prototype.insert = function(value) {
+  //O(logn) time complexity
+  let newNode = new BinarySearchTree(value);
+  //recurse on left and right trees
+  let recursiveInsert = function(node, newNode) {
+    if (newNode.value < node.value) {
+      if (node.left === null) {
+        node.left = newNode;
+      } else {
+        recursiveInsert(node.left, newNode);
+      }
+    }
+    if (newNode.value > node.value) {
+      if (node.right === null) {
+        node.right = newNode;
+      } else {
+        recursiveInsert(node.right, newNode);
+      }
+    }
+  };
+  recursiveInsert(this, newNode);
+};
+
+BinarySearchTree.prototype.contains = function(value) {
+  //O(logn) time complexity
+  
+  let recursiveSearch = function(node, value) {
+    if (!node || !node.value) {
+      return false;
+    }
+    //recurse on left
+    if (value < node.value) {
+      if (node.left.value === value) {
+        return true;
+      } else {
+        recursiveSearch(node.left, value);
+      }
+    //recurse on right
+    } else if (value > node.value) {
+      if (node.right.value === value) {
+        return true;
+      } else {
+        recursiveSearch(node.right, value);
+      }
+    } else if (value === node.value) {
+      return true;
+    }
+  };
+  return recursiveSearch(this, value);
+};
+
+BinarySearchTree.prototype.depthFirstLog = cb => {
+  //O(n) time complexity
+  //TBD
 };
 
 /*
