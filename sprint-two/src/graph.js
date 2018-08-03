@@ -18,12 +18,14 @@ Graph.prototype.contains = function(node) {
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
   this.vertices.pop(node);
-  this.edges[node] = []; // TBD
+  console.log(node, this.edges);
+  this.edges.pop(this.edges.node);
+  // console.log(x);
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
-  return _.contains(this.edges[fromNode], toNode);
+  return _.contains(this.edges[toNode], fromNode);
 };
 
 // Connects two nodes in a graph by adding an edge between them.
@@ -34,12 +36,12 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
-  this.edges[toNode].pop(fromNode);
+  this.edges[fromNode].pop(toNode);
 };
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
-  _.each(this.nodes, cb); //TBD
+  this.vertices.forEach(cb);
 };
 
 /*
