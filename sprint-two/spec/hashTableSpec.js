@@ -51,14 +51,13 @@ describe('hashTable', function() {
     };
     hashTable.insert(v1, v1);
     hashTable.insert(v2, v2);
-   
     expect(hashTable.retrieve(v1)).to.equal(v1);
     expect(hashTable.retrieve(v2)).to.equal(v2);
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
-  it('ADVANCED - should double in size when needed', function() {
+  xit('ADVANCED - should double in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
@@ -68,7 +67,7 @@ describe('hashTable', function() {
     expect(hashTable._limit).to.equal(16);
   });
 
-  it('ADVANCED - should halve in size when needed', function() {
+  xit('ADVANCED - should halve in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
