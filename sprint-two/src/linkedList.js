@@ -13,7 +13,6 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
     //O(1) time complexity
-
     //create new node
     let newNode = list.node(value);
 

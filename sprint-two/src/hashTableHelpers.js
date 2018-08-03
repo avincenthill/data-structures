@@ -3,7 +3,6 @@
  * Do not edit this code unless you see a bug!
  */
 
-
 // This class represents an array with limited functionality and a maximum size.
 // It will ensure that you don't accidentally try to use up too much space.
 //
@@ -12,8 +11,8 @@
 //   limitedArray.get(3); // returns 'hi'
 
 var LimitedArray = function(limit) {
+  //O(TBD) time complexity
   var storage = [];
-
   var limitedArray = {};
   limitedArray.get = function(index) {
     checkLimit(index);
@@ -30,6 +29,7 @@ var LimitedArray = function(limit) {
   };
 
   var checkLimit = function(index) {
+    //O(TBD) time complexity
     if (typeof index !== 'number') {
       throw new Error('setter requires a numeric index for its first argument');
     }
@@ -45,6 +45,7 @@ var LimitedArray = function(limit) {
 // to turn any string into an integer that is well-distributed between the
 // numbers 0 and `max`
 var getIndexBelowMaxForKey = function(str, max) {
+  //O(TBD) time complexity
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
     hash = (hash << 5) + hash + str.charCodeAt(i);
