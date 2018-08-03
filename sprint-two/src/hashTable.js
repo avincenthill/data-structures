@@ -6,40 +6,34 @@ var HashTable = function() {
 HashTable.prototype.insert = function(k, v) {
   //O(1) time complexity
   var index = getIndexBelowMaxForKey(k, this._limit);
-
-  //if something is in index location of table
-  //and it comes from a different k
-  //what does this mean?
-
-  if (this._storage.get(index)) {
-    console.log(this._storage.get(index));
-  }
-
-  this._storage.set(index, v);
+  let bucket = this._storage.get(index) || [];
+  let tuple = [k, v];
+  bucket.push(tuple);
+  this._storage.set(index, bucket);
 };
 
 HashTable.prototype.retrieve = function(k) {
   //O(n) time complexity
   var index = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(index);
+  let bucket = this._storage.get(index);
+  let value;
+  _.forEach(bucket, element => {
+    if (element[0] === k) {
+      value = element[1];
+    }
+  });
+  return value;
 };
 
 HashTable.prototype.remove = function(k) {
-  //O(1) time complexity
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(index, undefined);
+  let bucket = this._storage.get(index);
+  return _.forEach(bucket, element => {
+    if (element[0] === k) {
+      return bucket.pop(element);
+    }
+  });
 };
-
-//getIndexBelowMaxForKey = function(str, max)
-
-/*
-
-Make the following properties appear on all instances:
-An .insert() method
-A .retrieve() method
-A .remove() method
-
-  */
 
 /*
  * Complexity: What is the time complexity of the above functions?
