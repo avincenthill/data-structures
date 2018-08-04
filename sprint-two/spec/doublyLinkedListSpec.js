@@ -22,12 +22,6 @@ describe('doublyLinkedList', function() {
     expect(dLinkedList.removeTail).to.be.a('function');
   });
 
-  it('should have methods named "addToTail", "removeHead", and "contains"', function() {
-    expect(dLinkedList.addToTail).to.be.a('function');
-    expect(dLinkedList.removeHead).to.be.a('function');
-    expect(dLinkedList.contains).to.be.a('function');
-  });
-
   it('should designate a new tail when new nodes are added', function() {
     dLinkedList.addToTail(4);
     expect(dLinkedList.tail.value).to.equal(4);
@@ -63,23 +57,17 @@ describe('doublyLinkedList', function() {
     expect(dLinkedList.contains(4)).to.equal(false);
   });
 
-  it('TBD should remove the tail from the list when removeTail is called', function() {
-    // dLinkedList.addToTail(4);
-    // dLinkedList.addToTail(5);
-    // expect(dLinkedList.head.value).to.equal(4);
-    // dLinkedList.removeHead();
-    // expect(dLinkedList.head.value).to.equal(5);
+  it('should return the value of the former tail when removeTail is called', function() {
+    dLinkedList.addToTail(4);
+    dLinkedList.addToTail(5);
+    dLinkedList.removeTail();
+    expect(dLinkedList.tail.value).to.equal(4);
   });
 
-  it('TBD should return the value of the former tail when removeTail is called', function() {
-    // dLinkedList.addToTail(4);
-    // expect(dLinkedList.removeHead()).to.equal(4);
-  });
-
-  it('TBD should designate a new head when new nodes are added with addToHead', function() {
-    // dLinkedList.addToTail(4);
-    // expect(dLinkedList.tail.value).to.equal(4);
-    // dLinkedList.addToTail(5);
-    // expect(dLinkedList.tail.value).to.equal(5);
+  it('should designate a new head when new nodes are added with addToHead', function() {
+    dLinkedList.addToHead(4);
+    expect(dLinkedList.head.value).to.equal(4);
+    dLinkedList.addToHead(5);
+    expect(dLinkedList.head.value).to.equal(5);
   });
 });

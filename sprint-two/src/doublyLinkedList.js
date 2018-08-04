@@ -2,12 +2,12 @@ var DLinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
-  list.listLength = 0;
 
   list.node = function(value) {
     var node = {};
     node.value = value;
     node.next = null;
+    node.previous = null;
     return node;
   };
 
@@ -19,6 +19,7 @@ var DLinkedList = function() {
     //make tail point to it
     if (list.tail) {
       list.tail.next = newNode;
+      newNode.previous = list.tail;
     }
 
     //update head
@@ -28,7 +29,6 @@ var DLinkedList = function() {
 
     //update tail
     list.tail = newNode;
-    list.listLength++;
   };
 
   list.removeHead = function() {
@@ -40,6 +40,30 @@ var DLinkedList = function() {
       list.head = null;
     }
     return formerHeadValue;
+  };
+
+  list.addToHead = function(value) {
+    //O(1) time complexity
+    //create new node
+    let newNode = list.node(value);
+    //make tail point to it
+    if (list.head) {
+      list.head.previous = newNode;
+      newNode.next = list.head;
+    }
+    //update head
+    list.head = newNode;
+  };
+
+  list.removeTail = function() {
+    //O(1) time complexity
+    let formerTailValue = list.tail.value;
+    if (list.tail.previous) {
+      list.tail = list.tail.previous;
+    } else {
+      list.tail = null;
+    }
+    return formerTailValue;
   };
 
   list.contains = function(target) {
