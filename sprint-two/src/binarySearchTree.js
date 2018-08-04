@@ -48,14 +48,34 @@ BinarySearchTree.prototype.contains = function(value) {
     if (!node) {
       return false;
     }
-    //recurse on left
     if (value === node.value) {
       return true;
+      //recurse on left
     } else if (value < node.value) {
       return recursiveSearch(node.left, value);
       //recurse on right
     } else if (value > node.value) {
       return recursiveSearch(node.right, value);
+    }
+  };
+  return recursiveSearch(this, value);
+};
+
+BinarySearchTree.prototype.remove = function(value) {
+  //O(log(n)) time complexity
+  let recursiveSearch = function(node, value) {
+    if (node) {
+      if (value === node.value) {
+        node.value = null;
+        node.left = null;
+        node.left = null;
+        //recurse on left
+      } else if (value < node.value) {
+        return recursiveSearch(node.left, value);
+        //recurse on right
+      } else if (value > node.value) {
+        return recursiveSearch(node.right, value);
+      }
     }
   };
   return recursiveSearch(this, value);

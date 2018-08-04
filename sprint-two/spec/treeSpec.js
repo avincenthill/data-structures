@@ -40,4 +40,11 @@ describe('tree', function() {
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
+
+  it('NEW TEST: should be able to add 10,000 children to root', function() {
+    for (let i = 0; i < 10000; i++) {
+      tree.addChild(i);
+    }
+    expect(tree.contains(9999)).to.equal(true);
+  });
 });

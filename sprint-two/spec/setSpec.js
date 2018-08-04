@@ -24,4 +24,10 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('NEW TEST: should handle adding 10,000 values', function() {
+    for (let i = 0; i < 10000; i++) {
+      set.add(i);
+    }
+    expect(set.contains('9999')).to.equal(true);
+  });
 });

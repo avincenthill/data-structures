@@ -38,4 +38,17 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+
+  it('NEW TEST: should have a method named "remove"', function() {
+    expect(binarySearchTree.remove).to.be.a('function');
+  });
+
+  it('NEW TEST: should have a working "remove" method', function() {
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(5);
+    binarySearchTree.remove(7);
+    binarySearchTree.insert(2);
+    expect(binarySearchTree.contains(7)).to.equal(false);
+  });
 });

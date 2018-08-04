@@ -72,4 +72,10 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('NEW TEST: should not throw error when adding nonintegers as node values', function() {
+    expect(graph.addNode(null)).to.equal(undefined);
+    expect(graph.addNode('')).to.equal(undefined);
+    expect(graph.addNode(true)).to.equal(undefined);
+  });
 });

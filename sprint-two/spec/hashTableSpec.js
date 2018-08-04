@@ -56,6 +56,14 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('NEW TEST: should handle adding 10,000 key value pairs', function() {
+    for (let i = 0; i < 10000; i++) {
+      hashTable.insert(String(i), i);
+    }
+
+    expect(hashTable.retrieve('9999')).to.equal(9999);
+  });
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit('ADVANCED - should double in size when needed', function() {
     _.each(people, function(person) {
