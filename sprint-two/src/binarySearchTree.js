@@ -21,8 +21,8 @@ BinarySearchTree.prototype.right = function() {
 BinarySearchTree.prototype.insert = function(value) {
   //O(logn) time complexity
   let newNode = new BinarySearchTree(value);
-  //recurse on left and right trees
   let recursiveInsert = function(node, newNode) {
+    //recurse on left
     if (newNode.value < node.value) {
       if (node.left === null) {
         node.left = newNode;
@@ -30,6 +30,7 @@ BinarySearchTree.prototype.insert = function(value) {
         recursiveInsert(node.left, newNode);
       }
     }
+    //recurse on right
     if (newNode.value > node.value) {
       if (node.right === null) {
         node.right = newNode;
@@ -43,33 +44,24 @@ BinarySearchTree.prototype.insert = function(value) {
 
 BinarySearchTree.prototype.contains = function(value) {
   //O(logn) time complexity
-  
   let recursiveSearch = function(node, value) {
-    if (!node || !node.value) {
+    if (!node) {
       return false;
     }
     //recurse on left
-    if (value < node.value) {
-      if (node.left.value === value) {
-        return true;
-      } else {
-        recursiveSearch(node.left, value);
-      }
-    //recurse on right
-    } else if (value > node.value) {
-      if (node.right.value === value) {
-        return true;
-      } else {
-        recursiveSearch(node.right, value);
-      }
-    } else if (value === node.value) {
+    if (value === node.value) {
       return true;
+    } else if (value < node.value) {
+      return recursiveSearch(node.left, value);
+      //recurse on right
+    } else if (value > node.value) {
+      return recursiveSearch(node.right, value);
     }
   };
   return recursiveSearch(this, value);
 };
 
-BinarySearchTree.prototype.depthFirstLog = cb => {
+BinarySearchTree.prototype.depthFirstLog = function(cb) {
   //O(n) time complexity
   //TBD
 };
