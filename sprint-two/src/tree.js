@@ -5,10 +5,12 @@ var Tree = function(value) {
   }
   newTree.value = value;
   newTree.isFound = false;
+  newTree.parent = null;
 
   //share methods
   newTree.addChild = treeMethods.addChild;
   newTree.contains = treeMethods.contains;
+  newTree.removeFromParent = treeMethods.removeFromParent;
 
   newTree.children = [];
   return newTree;
@@ -19,7 +21,7 @@ var treeMethods = {
   addChild: function(value) {
     newTree = Tree(value);
     this.children.push(newTree);
-    //newTree.parent = this;
+    newTree.parent = this;
   },
 
   contains: function(target) {
@@ -32,6 +34,31 @@ var treeMethods = {
       });
     }
     return this.isFound;
+  },
+
+  removeFromParent: function(target) {
+    //O(1) time complexity
+    let selectedNode;
+    debugger;
+    let selectNode = function(target) {
+      if (this.value === target) {
+        return this;
+      } else {
+        if (this.children) {
+          this.children.forEach(element => {
+            return selectNode(target);
+          });
+        }
+      }
+    };
+
+    selectedNode = selectNode(this);
+    debugger;
+    if (selectedNode.parent) {
+      selectedNode.parent.children.pop(selectedNode);
+    }
+    selectedNode.parent = null;
+    return selectedNode;
   }
 };
 

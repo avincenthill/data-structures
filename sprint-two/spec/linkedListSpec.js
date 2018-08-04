@@ -51,7 +51,7 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
-  it('NEW TEST: should be able to add 10,000 values', function() {
+  it('should be able to add 10,000 values', function() {
     for (let i = 0; i < 10000; i++) {
       linkedList.addToTail(i);
     }

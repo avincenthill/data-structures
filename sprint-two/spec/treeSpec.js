@@ -41,10 +41,23 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
-  it('NEW TEST: should be able to add 10,000 children to root', function() {
+  it('should be able to add 10,000 children to root', function() {
     for (let i = 0; i < 10000; i++) {
       tree.addChild(i);
     }
     expect(tree.contains(9999)).to.equal(true);
+  });
+
+  it('should have a method named "removeFromParent", and a property named "parent"', function() {
+    expect(tree.removeFromParent).to.be.a('function');
+    expect(tree.hasOwnProperty('parent')).to.equal(true);
+  });
+
+  it('should correctly remove from parent, which disassociates the tree with its parent (in both directions)', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.removeFromParent(7);
+    expect(tree.contains(5)).to.equal(false);
   });
 });
