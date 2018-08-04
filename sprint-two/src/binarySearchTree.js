@@ -19,7 +19,7 @@ BinarySearchTree.prototype.right = function() {
 };
 
 BinarySearchTree.prototype.insert = function(value) {
-  //O(logn) time complexity
+  //O(log(n)) time complexity
   let newNode = new BinarySearchTree(value);
   let recursiveInsert = function(node, newNode) {
     //recurse on left
@@ -43,7 +43,7 @@ BinarySearchTree.prototype.insert = function(value) {
 };
 
 BinarySearchTree.prototype.contains = function(value) {
-  //O(logn) time complexity
+  //O(log(n)) time complexity
   let recursiveSearch = function(node, value) {
     if (!node) {
       return false;
@@ -63,7 +63,20 @@ BinarySearchTree.prototype.contains = function(value) {
 
 BinarySearchTree.prototype.depthFirstLog = function(cb) {
   //O(n) time complexity
-  //TBD
+  let recursiveCall = function(node, cb) {
+    if (!node) {
+      //do nothing
+    } else {
+      cb(node.value);
+      if (node.left) {
+        recursiveCall(node.left, cb);
+      }
+      if (node.right) {
+        recursiveCall(node.right, cb);
+      }
+    }
+  };
+  recursiveCall(this, cb);
 };
 
 /*
